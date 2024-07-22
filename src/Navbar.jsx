@@ -22,8 +22,8 @@ const Navbar = () => {
               <Nav.Link as={Link} to="/" style={{ color: '#f7ede2', fontWeight: 'bold', fontFamily: 'Arial', fontSize: '25px' }}>HOME</Nav.Link>
               <Nav.Link as={Link} to="/profile" style={{ color: '#f7ede2', fontWeight: 'bold', fontFamily: 'Arial', fontSize: '25px' }}>PROFILE</Nav.Link>
               <Nav.Link as={Link} to="/posts" style={{ color: '#f7ede2', fontWeight: 'bold', fontFamily: 'Arial', fontSize: '25px' }}>POSTS</Nav.Link>
-              <Nav.Link as={Link} to="/follows" style={{ color: '#f7ede2', fontWeight: 'bold', fontFamily: 'Arial', fontSize: '25px' }}>FOLLOWS</Nav.Link>
-              <Nav.Link as={Link} to="/chatroom" style={{ color: '#f7ede2', fontWeight: 'bold', fontFamily: 'Arial', fontSize: '25px' }}>CHATROOM</Nav.Link>
+              <Nav.Link as={Link} to={`/follows/${1}`} style={{ color: '#f7ede2', fontWeight: 'bold', fontFamily: 'Arial', fontSize: '25px' }}>FOLLOWS</Nav.Link>
+              <Nav.Link as={Link} to="/messages/1/2" style={{ color: '#f7ede2', fontWeight: 'bold', fontFamily: 'Arial', fontSize: '25px' }}>MESSAGES</Nav.Link>
             </Nav>
             <div className="d-flex ms-auto">
               <Button
