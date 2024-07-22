@@ -4,6 +4,7 @@ import HomePage from './HomePage';
 import Navbar from './Navbar';
 import DirectMessage from './DirectMessage';
 import FollowsList from './FollowsList';
+import Profile from './Profile';
 // import LoginPage from './LoginPage';
 // import RegisterPage from './RegisterPage';
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/messages/:senderID/:receiverID" element={<DirectMessage />} />
         <Route path="/follows/:userID" element={<FollowsList />} />
+        <Route path="/profile" element={<Profile />} />
         {/* <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} /> */}
       </Routes>
