@@ -92,7 +92,7 @@ const DirectMessage = () => {
               onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
               className="me-2 message-input"
             />
-            <Button variant="primary" onClick={sendMessage}>
+            <Button variant="info" onClick={sendMessage}>
               Send
             </Button>
           </Form>

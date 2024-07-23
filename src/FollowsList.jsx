@@ -34,10 +34,10 @@ const FollowsList = () => {
     <Container className="mt-4">
       <Row className="justify-content-center mb-3">
         <ToggleButtonGroup type="radio" name="viewOptions" defaultValue="followers" onChange={handleToggle}>
-          <ToggleButton id="tbg-radio-1" value={'followers'} variant="outline-primary">
+          <ToggleButton id="tbg-radio-1" value={'followers'} variant="outline-info">
             Followers
           </ToggleButton>
-          <ToggleButton id="tbg-radio-2" value={'following'} variant="outline-primary">
+          <ToggleButton id="tbg-radio-2" value={'following'} variant="outline-info">
             Following
           </ToggleButton>
         </ToggleButtonGroup>

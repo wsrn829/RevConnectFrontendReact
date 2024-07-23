@@ -90,7 +90,7 @@ const Profile = ({ userId }) => {
         {follows.map(follow => (
           <ListGroupItem key={follow.followID}>
             {activeTab === 'followers' ? follow.follower.username : follow.following.username}
-            <Button variant="primary" size="sm" className="ml-3" onClick={() => handleFollowToggle(follow)}>
+            <Button variant="info" size="sm" className="ml-3" onClick={() => handleFollowToggle(follow)}>
               {activeTab === 'followers' ? 'Unfollow' : 'Follow'}
             </Button>
           </ListGroupItem>
@@ -143,7 +143,7 @@ const Profile = ({ userId }) => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Button variant="primary" type="submit">
+                  <Button variant="info" type="submit">
                     Save
                   </Button>
                   <Button variant="secondary" onClick={handleEditToggle} className="ml-2">
@@ -154,10 +154,13 @@ const Profile = ({ userId }) => {
                 <>
                   <Card.Title>{user.username}</Card.Title>
                   <Card.Text>
-                    <strong>Name: </strong> {user.firstname} {user.lastname} <br />
+                    <strong>Name: </strong> {user.firstname} {user.lastname}
+                    <br />
+                    <br />
                     <strong>Bio: </strong> {user.bio}
                   </Card.Text>
-                  <Button variant="primary" onClick={handleEditToggle}>
+                    <br />
+                  <Button variant="info" onClick={handleEditToggle}>
                     Edit Profile
                   </Button>
                 </>
@@ -166,7 +169,7 @@ const Profile = ({ userId }) => {
           </Card>
         </Col>
       </Row>
-      <Row className="justify-content-center mt-3">
+      {/* <Row className="justify-content-center mt-3">
         <Col md={8}>
           <Nav variant="tabs" defaultActiveKey="#followers">
             <Nav.Item>
@@ -178,7 +181,7 @@ const Profile = ({ userId }) => {
           </Nav>
           {activeTab === 'followers' ? renderFollowList(followers) : renderFollowList(followings)}
         </Col>
-      </Row>
+      </Row> */}
     </Container>
   );
 };
