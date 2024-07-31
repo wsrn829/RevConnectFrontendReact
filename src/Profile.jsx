@@ -5,8 +5,8 @@ import { useAuth } from './AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ProfilePage = () => {
-  const { auth } = useAuth(); // Use useAuth to get auth details
-  const { userId: profileUserId } = useParams(); // Get userId from URL
+  const { auth } = useAuth();
+  const { userId: profileUserId } = useParams();
   const [user, setUser] = useState({
     username: '',
     firstname: '',
@@ -45,26 +45,26 @@ const ProfilePage = () => {
     event.preventDefault();
     try {
         const payload = {
-            userID: parseInt(profileUserId), // Ensure userID is included and an integer
+            userID: parseInt(profileUserId),
             username: user.username,
             firstname: user.firstname,
             lastname: user.lastname,
             bio: user.bio
         };
 
-        console.log('Submitting user data:', payload); // Log the user data
+        console.log('Submitting user data:', payload);
 
         const response = await fetch(`http://localhost:8080/users/${profileUserId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            credentials: 'include', // Ensure cookies are included in the request
+            credentials: 'include',
             body: JSON.stringify(payload)
         });
 
         if (!response.ok) {
-            const errorText = await response.text(); // Get error message from response
+            const errorText = await response.text();
             throw new Error(`Network response was not ok: ${errorText}`);
         }
 

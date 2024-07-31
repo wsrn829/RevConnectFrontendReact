@@ -20,7 +20,7 @@ const HomePage = () => {
           <div className="container center">
             <div className="cta-wrapper">
               <div className="subheader black">Are you ready?</div>
-              <h2 className="cta-h2 center">Connect with friends, share your experiences, and chat in real-time!!</h2>
+              <h2 className="cta-h2 center">Connect with friends, share your experiences, and chat in real-time!</h2>
               <Link to="/register" className="button join">Get started</Link>
             </div>
           </div>

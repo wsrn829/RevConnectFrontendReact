@@ -1,0 +1,30 @@
+/* src/components/Chat.css */
+
+.chat-container {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .message-list-container {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+  }
+
+  .send-message-form-container {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+  }
+
+  .alert-info {
+    margin-top: 20px;
+  }

@@ -3,7 +3,7 @@ import { Card, Button, Form, FormControl } from 'react-bootstrap';
 import { useAuth } from './AuthContext';
 
 const UserSearch = () => {
-  const { auth } = useAuth();  // Get auth state from context
+  const { auth } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [followingList, setFollowingList] = useState([]);
@@ -21,9 +21,8 @@ const UserSearch = () => {
         }
 
         const data = await response.json();
-        console.log('Following List:', data); // Debugging: log the fetched following list
+        console.log('Following List:', data);
 
-        // Assuming the data structure based on your example
         const followingUsernames = data.map(follow => follow.followingUsername);
         setFollowingList(followingUsernames);
       } catch (error) {
@@ -53,7 +52,7 @@ const UserSearch = () => {
 
       if (response.ok) {
         console.log('Successfully followed.');
-        setFollowingList([...followingList, username]); // Update the following list
+        setFollowingList([...followingList, username]);
       } else {
         const text = await response.text();
         console.error('Error following user:', response.statusText, text);
@@ -72,7 +71,7 @@ const UserSearch = () => {
 
       if (response.ok) {
         console.log('Successfully unfollowed.');
-        setFollowingList(followingList.filter(user => user !== username)); // Update the following list
+        setFollowingList(followingList.filter(user => user !== username));
       } else {
         const text = await response.text();
         console.error('Error unfollowing user:', response.statusText, text);
@@ -83,7 +82,7 @@ const UserSearch = () => {
   };
 
   const isFollowing = (username) => {
-    console.log('Following Check:', followingList); // Debugging: log the following list
+    console.log('Following Check:', followingList);
     return followingList.includes(username);
   };
 
