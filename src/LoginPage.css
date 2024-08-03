@@ -1,0 +1,23 @@
+.login-card {
+    background-color: #fff;
+  }
+
+  .login-card h2 {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+  }
+
+  .login-card .form-label {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+  }
+
+  .login-card .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+  }
+
+  .login-card .btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+  }

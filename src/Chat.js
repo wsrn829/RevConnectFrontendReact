@@ -1,13 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useAuth } from './AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Chat.css';
 
 const ChatRoom = () => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const [receiverId, setReceiverId] = useState('');
     const [notifications, setNotifications] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
     const { auth } = useAuth();
+    const messagesEndRef = useRef(null);
 
     useEffect(() => {
         if (!auth.isLoggedIn) {
@@ -16,6 +20,7 @@ const ChatRoom = () => {
 
         fetchMessages();
         fetchUnreadNotifications();
+        fetchUsers();
 
         // Polling for new messages and notifications every 5 seconds
         const intervalId = setInterval(() => {
@@ -27,6 +32,13 @@ const ChatRoom = () => {
 
         return () => clearInterval(intervalId);
     }, [auth.isLoggedIn]);
+
+    useEffect(() => {
+        // Scroll to the bottom of the messages list whenever messages change
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [messages]);
 
     const fetchMessages = async () => {
         try {
@@ -63,6 +75,25 @@ const ChatRoom = () => {
             }
         } catch (error) {
             console.error('Error fetching notifications:', error);
+        }
+    };
+
+    const fetchUsers = async (query = '') => {
+        try {
+            const response = await fetch(`http://localhost:8080/users/search?query=${query}`, {
+                headers: {
+                    'Authorization': `Bearer ${auth.token}`,
+                },
+                credentials: 'include',
+            });
+            if (response.ok) {
+                const usersData = await response.json();
+                setUsers(usersData);
+            } else {
+                console.error('Failed to fetch users');
+            }
+        } catch (error) {
+            console.error('Error fetching users:', error);
         }
     };
 
@@ -137,78 +168,112 @@ const ChatRoom = () => {
         }
     };
 
+    const handleSearchChange = (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+        fetchUsers(query);
+    };
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleSendMessage();
+        }
+    };
+
     if (!auth.isLoggedIn) {
         return <div>Please log in to access the chat room.</div>;
     }
 
     return (
         <div className="container my-4">
-            <h1 className="mb-4">Chat Room</h1>
+            <div className="row justify-content-center">
+                <div className="col-12 col-md-8">
+                    <h1 className="mb-4 text-center">Chat Room</h1>
 
-            {/* Notifications List */}
-            {notifications.length > 0 && (
-                <div className="border rounded p-3 mb-4 notifications-list" style={{ maxHeight: '200px', overflowY: 'scroll' }}>
-                    <h4 className="mb-3">Unread Notifications</h4>
-                    {notifications.map(notification => (
-                        <div
-                            key={notification.id}
-                            className="alert alert-info mb-2"
-                            onClick={() => markAsRead(notification.id)}  // Click handler to mark as read
-                            style={{ cursor: 'pointer' }}
-                        >
-                            {notification.message}
+                    {/* Notifications List */}
+                    {notifications.length > 0 && (
+                        <div className="border rounded p-3 mb-4 notifications-list bg-light" style={{ maxHeight: '200px', overflowY: 'scroll' }}>
+                            {notifications.map(notification => (
+                                <div
+                                    key={notification.id}
+                                    className="alert mb-2"
+                                    onClick={() => markAsRead(notification.id)}
+                                    style={{
+                                        cursor: 'pointer',
+                                        backgroundColor: '#e0bbff',
+                                        fontSize: '1.1rem',
+                                        fontWeight: 'bold',
+                                        padding: '10px',
+                                        margin: '5px 0',
+                                        borderRadius: '5px',
+                                        color: notification.read ? '#fff' : '#000',
+                                    }}
+                                >
+                                    {notification.message}
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            )}
+                    )}
 
-            {/* Messages List */}
-            <div className="border rounded p-3 mb-4 chat-messages" style={{ maxHeight: '400px', overflowY: 'scroll' }}>
-                {messages.map((msg, index) => (
-                    <div
-                        key={index}
-                        className={`d-flex flex-column mb-2 ${msg.sender.userID === auth.userID ? 'align-self-end' : 'align-self-start'}`}
-                    >
-                        <div
-                            className={`message p-3 rounded ${msg.sender.userID === auth.userID ? 'bg-primary text-white' : 'bg-light text-dark'}`}
-                            style={{ maxWidth: '70%' }}
-                        >
-                            {msg.receiver && (
-                                <p className="mb-1 fw-bold">
-                                    To: {msg.receiver.username}
-                                </p>
-                            )}
-                            <p className="mb-1">{msg.message}</p>
-                            <p className="mb-0 text-muted small">
-                                {msg.sender.userID === auth.userID
-                                    ? `You`
-                                    : `User ${msg.sender.username}`}
-                            </p>
+                    {/* Messages List */}
+                    <div className="border rounded p-3 mb-4 chat-messages bg-light" style={{ maxHeight: '400px', overflowY: 'scroll' }}>
+                        {messages.map((msg, index) => (
+                            <div
+                                key={index}
+                                className={`d-flex flex-column mb-2 ${msg.sender.userID === auth.userID ? 'align-self-end' : 'align-self-start'}`}
+                            >
+                                <div
+                                    className={`message p-3 rounded shadow-sm ${msg.sender.userID === auth.userID ? 'bg-success text-white' : 'bg-light-purple'}`}
+                                    style={{ maxWidth: '75%', wordWrap: 'break-word' }}
+                                >
+                                    {msg.receiver && (
+                                        <p className="mb-1 fw-bold" style={{ fontSize: '0.9rem' }}>
+                                            To: {msg.receiver.username}
+                                        </p>
+                                    )}
+                                    <p className="mb-1" style={{ fontSize: '1rem' }}>{msg.message}</p>
+                                    <p className="mb-0 text-muted small" style={{ fontSize: '0.8rem' }}>
+                                        {msg.sender.userID === auth.userID
+                                            ? `You`
+                                            : `User ${msg.sender.username}`}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                        <div ref={messagesEndRef} />
+                    </div>
+
+                    {/* Message Input */}
+                    <div className="mb-3">
+                        <div className="input-group mb-2">
+                            <select
+                                className="form-select"
+                                value={receiverId}
+                                onChange={(e) => setReceiverId(e.target.value)}
+                            >
+                                <option value="">Select a user</option>
+                                {users.map(user => (
+                                    <option key={user.userID} value={user.userID}>
+                                        {user.username}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="input-group">
+                            <input
+                                type="text"
+                                className="form-control"
+                                value={newMessage}
+                                onChange={(e) => setNewMessage(e.target.value)}
+                                onKeyPress={handleKeyPress}
+                                placeholder="Type your message..."
+                            />
+                            <button className="btn btn-info" onClick={handleSendMessage}>Send</button>
                         </div>
                     </div>
-                ))}
-            </div>
-
-            {/* Message Input */}
-            <div className="input-group mb-3">
-                <input
-                    type="text"
-                    className="form-control"
-                    value={receiverId}
-                    onChange={(e) => setReceiverId(e.target.value)}
-                    placeholder="Enter receiver ID..."
-                />
-                <input
-                    type="text"
-                    className="form-control"
-                    value={newMessage}
-                    onChange={(e) => setNewMessage(e.target.value)}
-                    placeholder="Type your message..."
-                />
-                <button className="btn btn-info" onClick={handleSendMessage}>Send</button>
+                </div>
             </div>
         </div>
     );
-};
-
-export default ChatRoom;
+    }
+    export default ChatRoom;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import { Card, Button, Form, FormControl } from 'react-bootstrap';
 import { useAuth } from './AuthContext';
 
@@ -7,6 +7,15 @@ const UserSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [followingList, setFollowingList] = useState([]);
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    // Focus the input element when the component mounts
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   useEffect(() => {
     const fetchFollowingList = async () => {
@@ -21,7 +30,7 @@ const UserSearch = () => {
         }
 
         const data = await response.json();
-        console.log('Following List:', data);
+        // console.log('Following List:', data);
 
         const followingUsernames = data.map(follow => follow.followingUsername);
         setFollowingList(followingUsernames);
@@ -82,7 +91,7 @@ const UserSearch = () => {
   };
 
   const isFollowing = (username) => {
-    console.log('Following Check:', followingList);
+    // console.log('Following Check:', followingList);
     return followingList.includes(username);
   };
 
@@ -96,6 +105,7 @@ const UserSearch = () => {
           aria-label="Search"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          ref={inputRef} // Attach the ref to the input element
         />
         <Button variant="outline-success" onClick={handleSearch}>Search</Button>
       </Form>

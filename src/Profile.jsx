@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Alert, Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Profile.css';
 
 const ProfilePage = () => {
   const { auth } = useAuth();
@@ -78,55 +79,66 @@ const ProfilePage = () => {
 };
 
   return (
-    <Container className="mt-4">
-      <h2>Profile</h2>
+    <Container className="mt-4 profile-container">
+      <h2 className="text-center mb-4">Profile</h2>
       {error && <Alert variant="danger">{error}</Alert>}
       {success && <Alert variant="success">{success}</Alert>}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="username">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            name="username"
-            value={user.username}
-            onChange={handleChange}
-            readOnly={auth.userID !== profileUserId}
-          />
+      <Form onSubmit={handleSubmit} className="p-4 border rounded bg-light">
+        <Form.Group as={Row} controlId="username" className="mb-3">
+        <Form.Label column sm={2} style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>Username</Form.Label>
+        <Col sm={10}>
+            <Form.Control
+              type="text"
+              name="username"
+              value={user.username}
+              onChange={handleChange}
+              readOnly={auth.userID !== profileUserId}
+            />
+          </Col>
         </Form.Group>
-        <Form.Group controlId="firstname">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="firstname"
-            value={user.firstname}
-            onChange={handleChange}
-            readOnly={auth.userID !== profileUserId}
-          />
+        <Form.Group as={Row} controlId="firstname" className="mb-3">
+          <Form.Label column sm={2} style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>First Name</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="text"
+              name="firstname"
+              value={user.firstname}
+              onChange={handleChange}
+              readOnly={auth.userID !== profileUserId}
+            />
+          </Col>
         </Form.Group>
-        <Form.Group controlId="lastname">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="lastname"
-            value={user.lastname}
-            onChange={handleChange}
-            readOnly={auth.userID !== profileUserId}
-          />
+        <Form.Group as={Row} controlId="lastname" className="mb-3">
+          <Form.Label column sm={2} style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>Last Name</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="text"
+              name="lastname"
+              value={user.lastname}
+              onChange={handleChange}
+              readOnly={auth.userID !== profileUserId}
+            />
+          </Col>
         </Form.Group>
-        <Form.Group controlId="bio">
-          <Form.Label>Bio</Form.Label>
-          <Form.Control
-            as="textarea"
-            name="bio"
-            value={user.bio}
-            onChange={handleChange}
-            readOnly={auth.userID !== profileUserId}
-          />
+        <Form.Group as={Row} controlId="bio" className="mb-3">
+          <Form.Label column sm={2} style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>Bio</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              as="textarea"
+              name="bio"
+              value={user.bio}
+              onChange={handleChange}
+              readOnly={auth.userID !== profileUserId}
+              rows={3}
+            />
+          </Col>
         </Form.Group>
         {auth.userID === profileUserId && (
-          <Button variant="info" type="submit">
-            Save Changes
-          </Button>
+          <div className="text-center">
+            <Button variant="info" type="submit">
+              Save Changes
+            </Button>
+          </div>
         )}
       </Form>
     </Container>

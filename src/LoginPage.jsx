@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert, Container, Row, Col } from 'react-bootstrap';
 import { useAuth } from './AuthContext';
 import {jwtDecode} from 'jwt-decode';
+// import './LoginPage.css';
 
 const getCookie = (name) => {
   const value = `; ${document.cookie}`;
@@ -69,38 +70,40 @@ const LoginPage = () => {
 
   return (
     <Container className="mt-5">
-      <Row className="justify-content-md-center">
-        <Col md={6}>
-          <h2>Login</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          {success && <Alert variant="success">{success}</Alert>}
-          <Form onSubmit={handleLogin}>
-            <Form.Group controlId="formUsername">
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </Form.Group>
+      <Row className="justify-content-center">
+        <Col md={6} lg={4}>
+          <div className="login-card p-4 shadow-sm rounded">
+            <h2 className="text-center mb-4">Login</h2>
+            {error && <Alert variant="danger">{error}</Alert>}
+            {success && <Alert variant="success">{success}</Alert>}
+            <Form onSubmit={handleLogin}>
+              <Form.Group controlId="formUsername" className="mb-3">
+                <Form.Label className="fw-bold">Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+              </Form.Group>
 
-            <Form.Group controlId="formPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </Form.Group>
+              <Form.Group controlId="formPassword" className="mb-3">
+                <Form.Label className="fw-bold">Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </Form.Group>
 
-            <Button variant="info" type="submit">
-              Login
-            </Button>
-          </Form>
+              <Button variant="info" type="submit" className="w-100">
+                Login
+              </Button>
+            </Form>
+          </div>
         </Col>
       </Row>
     </Container>

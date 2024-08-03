@@ -28,3 +28,8 @@
   .alert-info {
     margin-top: 20px;
   }
+
+.bg-light-purple {
+  background-color: #e0bbff;
+  color: #000;
+}

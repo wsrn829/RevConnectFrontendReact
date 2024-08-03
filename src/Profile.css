@@ -1,0 +1,9 @@
+.profile-container {
+    /* background-color: #f3e5f5; Light purple background color */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.profile-container .form-label {
+    color: #333; /* Darker color for better visibility */
+}

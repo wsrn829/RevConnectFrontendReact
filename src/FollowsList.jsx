@@ -20,7 +20,7 @@ const FollowsList = () => {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
         const data = await response.json();
-        console.log('Follows data:', data);
+        // console.log('Follows data:', data);
 
         // Set the follows data directly without additional filtering
         setFollows(data);

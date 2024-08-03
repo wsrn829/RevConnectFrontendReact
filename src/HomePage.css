@@ -157,3 +157,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #7e7ed5;
     background-color: #8ad1d1;
   }
+
+  .no-wrap {
+    white-space: nowrap;
+  }
