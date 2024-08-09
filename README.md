@@ -1,8 +1,10 @@
 # Project 1 - Social Media SPA
-RevConnect is a social media project that aims to provide a platform for personal users, businesses, and creators to 
-connect with each other. The core functional scope includes features such as personal user accounts where users can post, like, 
-comment and share posts, edit, and delete their posts. The project also includes business and creator accounts, which allow 
+RevConnect is a social media project that aims to provide a platform for personal users, businesses, and creators to
+connect with each other. The core functional scope includes features such as personal user accounts where users can post, like,
+comment and share posts, edit, and delete their posts. The project also includes business and creator accounts, which allow
 them to create and promote posts.
+
+# I wrote all the code in this repository.
 
 ## Dates
  - Code Freeze: EOB 7/31/24
@@ -56,4 +58,3 @@ them to create and promote posts.
  - Use Spring framework, and the Core, Web, and Data modules for the server
  - Use React library for the SPA client
  - Validate and sanitize all user inputs in the client
-   
