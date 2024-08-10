@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Project 1 - Social Media SPA
+RevConnect is a social media project that aims to provide a platform for personal users, businesses, and creators to 
+connect with each other. The core functional scope includes features such as personal user accounts where users can post, like, 
+comment and share posts, edit, and delete their posts. The project also includes business and creator accounts, which allow 
+them to create and promote posts.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Dates
+ - Code Freeze: EOB 7/31/24
+ - Due: 8/2/24
+ - Presentations: 8/2/24 - 10:30 AM ET
 
-## Available Scripts
+## Technologies
+ - Java
+ - SQL
+ - REST
+ - HTTP
+ - JUnit
+ - Mockito
+ - Spring
+ - React
+ - JWT
 
-In the project directory, you can run:
+## User Stories
+#### As a user, I should be able to:
+ - Register myself and create an account
+ - Login to my account
+ - Create a basic profile with name and bio
+ - Create a post, like, comment and share the posts
+ - Edit and delete the posts created by me
+ - Send connect requests to users
+ - Follow other users (normal users, Business users and content creators)
 
-### `npm start`
+## Stretch Goals
+ - Admin functionality - modify, delete posts and comments, ban users
+ - Chat with other users in the application
+ - Get email notifications about connect requests, a new follower, and any post activity in the following businesses users and content creators
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Functional Requirements
+ - Users should be able to register and login
+ - Users should be able to create and edit a profile
+ - Users should be able to create posts, like, comment, and share posts
+ - Users should be able to edit and delete posts
+ - Users should be able to follow, connect, and/or friend other users
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Non-functional Requirements
+ - Adhere to REST guiding principles
+   - Uniform Interface
+   - Client-Server
+   - Stateless Session Management
+   - Cacheability
+   - 3-Tier server
+ - All resource representations must be transmitted as JSON request/response bodies
+ - Adhere to SOLID principles, most importantly the Single Responsibility Principle
+ - Encrypt passwords for storage
+ - Implement encrypted bearer tokens for session management (JWT cookies)
+ - Use Spring framework, and the Core, Web, and Data modules for the server
+ - Use React library for the SPA client
+ - Validate and sanitize all user inputs in the client
+   
