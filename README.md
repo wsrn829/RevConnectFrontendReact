@@ -4,8 +4,8 @@ connect with each other. The core functional scope includes features such as per
 comment and share posts, edit, and delete their posts. The project also includes business and creator accounts, which allow
 them to create and promote posts.
 
-## I wrote all the code in this repository. 
-## Backend code of this application is as below: 
+## I wrote all the code in this repository.
+## The backend code of this application is as below:
 https://github.com/wsrn829/RevConnectBackend
 
 ## Dates
